@@ -15,10 +15,10 @@ pip install emaillistverify
 ### Basic Usage
 
 ```python
-from emaillistverify import EmailListVerify
+from emaillistverify import EmailListVerifyClient
 
 # Initialize client with your API key
-client = EmailListVerify('your-api-key-here')
+client = EmailListVerifyClient('your-api-key-here')
 
 # Verify a single email
 result = client.verify_email('test@example.com')
@@ -35,10 +35,10 @@ for email, status in results.items():
 ### Context Manager Usage
 
 ```python
-from emaillistverify import EmailListVerify
+from emaillistverify import EmailListVerifyClient
 
 # Using context manager (recommended)
-with EmailListVerify('your-api-key-here') as client:
+with EmailListVerifyClient('your-api-key-here') as client:
     result = client.verify_email('test@example.com')
     print(f"Result: {result}")
 ```
@@ -61,23 +61,23 @@ The API returns simple text responses:
 ### Error Handling
 
 ```python
-from emaillistverify import EmailListVerify, EmailListVerifyException
+from emaillistverify import EmailListVerifyClient, EmailListVerifyError
 
 try:
-    client = EmailListVerify('your-api-key-here')
+    client = EmailListVerifyClient('your-api-key-here')
     result = client.verify_email('test@example.com')
     print(f"Result: {result}")
-except EmailListVerifyException as e:
+except EmailListVerifyError as e:
     print(f"Error: {e}")
 ```
 
 ### Advanced Usage
 
 ```python
-from emaillistverify import EmailListVerify
+from emaillistverify import EmailListVerifyClient
 
 # Initialize with custom timeout
-client = EmailListVerify('your-api-key-here', timeout=60)
+client = EmailListVerifyClient('your-api-key-here', timeout=60)
 
 # Verify multiple emails with custom delay between requests
 emails = ['email1@example.com', 'email2@example.com', 'email3@example.com']
@@ -93,8 +93,8 @@ print(f"Invalid emails: {invalid_emails}")
 
 ## Requirements
 
-- Python 3.6 or higher
-- requests >= 2.25.0
+- Python 3.8 or higher
+- httpx >= 0.27
 
 ## API Endpoint
 
